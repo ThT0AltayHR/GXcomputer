@@ -9,10 +9,10 @@ android {
 
     defaultConfig {
         applicationId "com.gxcomputer.app"
-        minSdk 26
+        minSdk 21
         targetSdk 34
-        versionCode 201
-        versionName "2.0.1"
+        versionCode 202
+        versionName "2.0.2"
 
         ndk {
             // Cihazın büyük çoğunluğu bu mimaride; box64 zaten sadece ARM64 hedefliyor

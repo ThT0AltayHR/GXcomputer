@@ -85,6 +85,7 @@ jobs:
           "$ZIPALIGN" -P 16 -f 4 "$UNSIGNED" app-aligned.apk
           "$APKSIGNER" sign --ks "$storeFile" \
             --ks-type "$storeType" \
+            --min-sdk-version 21 \
             --ks-pass pass:"$storePassword" --key-pass pass:"$keyPassword" \
             --ks-key-alias "$keyAlias" \
             --v1-signing-enabled true \
@@ -93,6 +94,11 @@ jobs:
             --out GXcomputer-${{ steps.version.outputs.name }}.apk app-aligned.apk
           "$ZIPALIGN" -c -P 16 -v 4 GXcomputer-${{ steps.version.outputs.name }}.apk
           "$APKSIGNER" verify --verbose --print-certs GXcomputer-${{ steps.version.outputs.name }}.apk
+          "$APKSIGNER" verify --verbose GXcomputer-${{ steps.version.outputs.name }}.apk \
+            | tee signing-verification.txt
+          grep -q 'Verified using v1 scheme (JAR signing): true' signing-verification.txt
+          grep -q 'Verified using v2 scheme (APK Signature Scheme v2): true' signing-verification.txt
+          grep -q 'Verified using v3 scheme (APK Signature Scheme v3): true' signing-verification.txt
           "$ANDROID_HOME/build-tools/$BUILD_TOOLS/aapt2" dump badging \
             GXcomputer-${{ steps.version.outputs.name }}.apk >/dev/null
 
@@ -107,8 +113,8 @@ jobs:
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v2.0.1
-          name: GXcomputer v2.0.1 (kararlı)
+          tag_name: v2.0.2
+          name: GXcomputer v2.0.2 (kararlı)
           files: GXcomputer-*.apk
           make_latest: true
           body: |
