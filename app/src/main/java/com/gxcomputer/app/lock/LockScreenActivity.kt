@@ -111,6 +111,9 @@ class LockScreenActivity : AppCompatActivity() {
         nameInput = findViewById(R.id.nameInput)
         passwordInput = findViewById(R.id.passwordInput)
         confirmPasswordInput = findViewById(R.id.confirmPasswordInput)
+        nameInput.showSoftInputOnFocus = false
+        passwordInput.showSoftInputOnFocus = false
+        confirmPasswordInput.showSoftInputOnFocus = false
         confirmPasswordRow = findViewById(R.id.confirmPasswordRow)
         passwordWarningBanner = findViewById(R.id.passwordWarningBanner)
         greetingText = findViewById(R.id.greetingText)

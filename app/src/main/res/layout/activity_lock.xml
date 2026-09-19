@@ -117,7 +117,6 @@
                 android:hint="@string/lock_name_hint"
                 android:textColorHint="@color/gx_text_tertiary"
                 android:textColor="@color/gx_text_primary"
-                android:showSoftInputOnFocus="false"
                 android:textSize="15sp"
                 android:maxLines="1" />
         </LinearLayout>
@@ -140,7 +139,6 @@
                 android:textColorHint="@color/gx_text_tertiary"
                 android:textColor="@color/gx_text_primary"
                 android:inputType="textPassword"
-                android:showSoftInputOnFocus="false"
                 android:cursorVisible="true"
                 android:textSize="15sp"
                 android:maxLines="1"
@@ -176,7 +174,6 @@
                 android:textColorHint="@color/gx_text_tertiary"
                 android:textColor="@color/gx_text_primary"
                 android:inputType="textPassword"
-                android:showSoftInputOnFocus="false"
                 android:textSize="15sp"
                 android:maxLines="1" />
         </LinearLayout>
