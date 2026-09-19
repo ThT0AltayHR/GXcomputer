@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Dış çerçeve: monitör + stand + taban -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,26 H84 V68 H24 Z M50,68 H58 V74 H50 Z M36,74 H72 V80 H36 Z" />
+    <!-- İç ekran (bezel) -->
+    <path
+        android:fillColor="#0A2540"
+        android:pathData="M30,32 H78 V62 H30 Z" />
+    <!-- İki pencere bloğu: "çalışan uygulamalar" motifi -->
+    <path
+        android:fillColor="#1B9AFF"
+        android:pathData="M35,38 H50 V48 H35 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M56,38 H73 V48 H56 Z" />
+    <path
+        android:fillColor="#66FFFFFF"
+        android:pathData="M35,52 H73 V56 H35 Z" />
+</vector>

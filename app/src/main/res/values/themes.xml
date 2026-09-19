@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.GXcomputer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/gx_accent</item>
+        <item name="colorPrimaryDark">@color/gx_accent_dark</item>
+        <item name="colorAccent">@color/gx_accent</item>
+        <item name="android:windowBackground">@color/gx_background</item>
+        <item name="android:statusBarColor">@color/gx_background</item>
+        <item name="android:navigationBarColor">@color/gx_background</item>
+        <item name="android:textColorPrimary">@color/gx_text_primary</item>
+        <item name="android:textColorSecondary">@color/gx_text_secondary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+    </style>
+
+    <style name="Theme.GXcomputer.Lock">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="p">shortEdges</item>
+    </style>
+
+    <style name="GXText.Title">
+        <item name="android:textColor">@color/gx_text_primary</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="GXText.Body">
+        <item name="android:textColor">@color/gx_text_primary</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="GXKeyboardKey">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:background">@drawable/bg_keyboard_key</item>
+        <item name="android:textColor">@color/gx_text_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gx_background">#0B0B0F</color>
+    <color name="gx_surface">#1C1C1E</color>
+    <color name="gx_surface_translucent">#CC1C1C1E</color>
+    <color name="gx_dock_background">#66FFFFFF</color>
+    <color name="gx_accent">#0A84FF</color>
+    <color name="gx_accent_dark">#0060DF</color>
+    <color name="gx_text_primary">#FFFFFF</color>
+    <color name="gx_text_secondary">#99FFFFFF</color>
+    <color name="gx_text_tertiary">#66FFFFFF</color>
+    <color name="gx_danger">#FF453A</color>
+    <color name="gx_success">#32D74B</color>
+    <color name="gx_keyboard_key">#3A3A3C</color>
+    <color name="gx_keyboard_key_pressed">#545456</color>
+    <color name="gx_sky_top">#0F2447</color>
+    <color name="gx_sky_bottom">#3A6EA5</color>
+    <color name="gx_hill_far">#274B6B</color>
+    <color name="gx_hill_near">#16324A</color>
+    <color name="gx_sun">#FFE9A8</color>
+</resources>

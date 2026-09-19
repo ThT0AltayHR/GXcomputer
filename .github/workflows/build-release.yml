@@ -1,0 +1,111 @@
+name: Derle, İmzala ve Yayınla
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: APK Derle ve İmzala
+    runs-on: ubuntu-latest
+    steps:
+      - name: Depoyu al
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: JDK 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Gradle 8.9 kur
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Büyük motor paketini birleştir
+        run: ./scripts/restore-large-assets.sh
+
+      - name: Sürüm bilgisini oku
+        id: version
+        run: |
+          NAME=$(grep -oP "versionName\s+\"\K[^\"]+" app/build.gradle || echo "1.0")
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+
+      # --- İmzalama anahtarı ---
+      # Kendi imza anahtarınızla derlemek için depo Settings > Secrets and variables > Actions
+      # altına şu sırları ekleyin: KEYSTORE_BASE64, KEYSTORE_PASSWORD, KEY_ALIAS, KEY_PASSWORD.
+      # (Yerel keytool ile keystore oluşturma adımları README.md içinde anlatılıyor.)
+      # Sırlar tanımlı değilse, iş akışı OTOMATİK OLARAK geçici bir anahtar üretip onunla imzalar -
+      # bu, uygulamayı kurmak için yeterlidir, ancak her derlemede DEĞİŞİR (üzerine güncelleme
+      # kurmak için aynı anahtarı korumak isterseniz sırları eklemeniz gerekir).
+      - name: İmza anahtarını hazırla
+        id: signing
+        run: |
+          mkdir -p keystore
+          if [ -n "${{ secrets.KEYSTORE_BASE64 }}" ]; then
+            echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > keystore/release.p12
+            echo "storeFile=keystore/release.p12" >> keystore/signing.properties
+            echo "storeType=PKCS12" >> keystore/signing.properties
+            echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" >> keystore/signing.properties
+            echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> keystore/signing.properties
+            echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> keystore/signing.properties
+            echo "kaynak=sırlar (kalıcı anahtar)" >> "$GITHUB_STEP_SUMMARY"
+          else
+            keytool -genkeypair -v -keystore keystore/release.jks -alias gxcomputer \
+              -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass gxcomputer123 -keypass gxcomputer123 \
+              -dname "CN=GXcomputer, OU=GXcomputer, O=GXcomputer, L=, S=, C=TR"
+            echo "storeFile=keystore/release.jks" >> keystore/signing.properties
+            echo "storeType=JKS" >> keystore/signing.properties
+            echo "storePassword=gxcomputer123" >> keystore/signing.properties
+            echo "keyAlias=gxcomputer" >> keystore/signing.properties
+            echo "keyPassword=gxcomputer123" >> keystore/signing.properties
+            echo "⚠️ Sırlar tanımlı değil - GEÇİCİ bir anahtarla imzalandı. Kalıcı bir anahtar için README.md'deki imzalama adımlarını uygulayın." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Release APK derle
+        run: gradle assembleRelease --stacktrace
+
+      - name: APK'yı imzala
+        run: |
+          BUILD_TOOLS=$(ls "$ANDROID_HOME"/build-tools | sort -V | tail -1)
+          ZIPALIGN="$ANDROID_HOME/build-tools/$BUILD_TOOLS/zipalign"
+          APKSIGNER="$ANDROID_HOME/build-tools/$BUILD_TOOLS/apksigner"
+          source keystore/signing.properties
+          UNSIGNED=$(find app/build/outputs/apk/release -name "*.apk" | head -1)
+          "$ZIPALIGN" -p 4 "$UNSIGNED" app-aligned.apk
+          "$APKSIGNER" sign --ks "$storeFile" \
+            --ks-type "$storeType" \
+            --ks-pass pass:"$storePassword" --key-pass pass:"$keyPassword" \
+            --ks-key-alias "$keyAlias" \
+            --out GXcomputer-${{ steps.version.outputs.name }}.apk app-aligned.apk
+          "$APKSIGNER" verify GXcomputer-${{ steps.version.outputs.name }}.apk
+
+      - name: Derleme çıktısını yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: GXcomputer-apk
+          path: GXcomputer-*.apk
+          retention-days: 30
+
+      - name: Kararlı sürüm olarak yayınla
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || format('build-{0}', github.run_number) }}
+          name: GXcomputer ${{ steps.version.outputs.name }} (kararlı)
+          files: GXcomputer-*.apk
+          make_latest: true
+          body: |
+            Otomatik derleme - commit ${{ github.sha }}
+
+            Kurulum: APK'yı indirip cihazınızda "bilinmeyen kaynaklardan yükleme"ye izin vererek kurun. Root gerekmez.

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GXcomputer</string>
+
+    <!-- Kilit Ekranı -->
+    <string name="lock_set_password_title">Şifre Belirle</string>
+    <string name="lock_set_password_subtitle">GXcomputer\'ı korumak için bir şifre oluştur</string>
+    <string name="lock_name_hint">Adınız</string>
+    <string name="lock_password_warning">Bu şifre, bilgisayarınızı her açışınızda kullanacağınız şifredir ve tüm GXcomputer\'larda geçerlidir. Lütfen unutmayacağınız bir şifre girin veya bir yere kaydedin.</string>
+    <string name="lock_booting_title">Yükleniyor</string>
+    <string name="lock_booting_subtitle">Devam ediyor…</string>
+    <string name="lock_toggle_keyboard">Klavyeyi Aç</string>
+    <string name="lock_name_required">Lütfen adınızı girin</string>
+    <string name="lock_confirm_password_hint">Şifreni Onayla</string>
+    <string name="lock_enter_password_hint">Şifre</string>
+    <string name="lock_button_continue">Devam Et</string>
+    <string name="lock_button_unlock">Giriş Yap</string>
+    <string name="lock_success_message">Giriş başarılı</string>
+    <string name="lock_wrong_password">Şifre yanlış, tekrar dene</string>
+    <string name="lock_password_mismatch">Şifreler uyuşmuyor</string>
+    <string name="lock_password_too_short">Şifre en az 4 karakter olmalı</string>
+    <string name="lock_greeting_morning">Günaydın</string>
+    <string name="lock_greeting_afternoon">İyi Günler</string>
+    <string name="lock_greeting_evening">İyi Akşamlar</string>
+    <string name="lock_greeting_night">İyi Geceler</string>
+
+    <!-- Hava Durumu -->
+    <string name="weather_needs_permission">Hava durumu için konum izni gerekli</string>
+    <string name="weather_needs_api_key">Hava durumu servisi ayarlanmadı</string>
+    <string name="weather_loading">Hava durumu alınıyor…</string>
+    <string name="weather_grant_permission">Konuma İzin Ver</string>
+
+    <!-- Masaüstü / Dock -->
+    <string name="desktop_installed_apps">Yüklü Uygulamalar</string>
+    <string name="desktop_install_app">Uygulama Yükle (.exe / .msi)</string>
+    <string name="desktop_no_apps">Henüz uygulama yüklemedin</string>
+    <string name="desktop_news_title">Haberler</string>
+    <string name="desktop_news_needs_api_key">Haber servisi ayarlanmadı</string>
+    <string name="desktop_settings">Ayarlar</string>
+    <string name="desktop_lock">Kilitle</string>
+    <string name="desktop_shutdown">Bilgisayarı Kapat</string>
+    <string name="desktop_shutdown_confirm_title">Bilgisayar kapatılsın mı?</string>
+    <string name="desktop_shutdown_confirm_message">Açık uygulamalar kapatılacak, kaydedilmemiş hiçbir veri kaybolmaz.</string>
+    <string name="desktop_first_run_preparing">GXcomputer ilk kez hazırlanıyor…</string>
+    <string name="desktop_installing_component">%1$s kuruluyor…</string>
+    <string name="desktop_storage_free">%1$s boş alan kullanılabilir</string>
+    <string name="desktop_toggle_keyboard">Cihaz Klavyesini Aç</string>
+
+    <!-- Dosya Yöneticisi -->
+    <string name="file_manager_title">Dosyalar</string>
+    <string name="file_manager_empty_folder">Bu klasör boş</string>
+    <string name="file_manager_trash">Çöp Kutusu</string>
+    <string name="file_manager_new_folder">Yeni Klasör</string>
+    <string name="file_manager_rename">Yeniden Adlandır</string>
+    <string name="file_manager_delete">Sil</string>
+    <string name="file_manager_search_hint">Dosyalarda ara</string>
+
+    <!-- Çöp Kutusu Onay Penceresi -->
+    <string name="trash_confirm_title">"\"%1$s\" silinsin mi?"</string>
+    <string name="trash_confirm_temporary_title">Geçici Olarak Sil</string>
+    <string name="trash_confirm_temporary_desc">Dosya çöp kutusuna taşınır, istediğin zaman geri getirebilirsin</string>
+    <string name="trash_confirm_permanent_title">Kalıcı Olarak Sil</string>
+    <string name="trash_confirm_permanent_desc">Dosya tamamen silinir, geri getirilemez</string>
+    <string name="trash_confirm_cancel">Vazgeç</string>
+    <string name="trash_empty_title">Çöp kutusu boş</string>
+    <string name="trash_restore">Geri Yükle</string>
+    <string name="trash_delete_forever">Kalıcı Olarak Sil</string>
+    <string name="trash_empty_all">Çöp Kutusunu Boşalt</string>
+    <string name="trash_item_count">%1$d öğe</string>
+
+    <!-- Terminal -->
+    <string name="terminal_title">Uçbirim</string>
+    <string name="terminal_input_hint">komut girin</string>
+
+    <!-- Kurulum / Container -->
+    <string name="setup_preparing_storage">Depolama alanı hazırlanıyor</string>
+    <string name="setup_extracting_component">%1$s açılıyor</string>
+    <string name="setup_configuring_gpu">Grafik sürücüsü otomatik yapılandırılıyor</string>
+    <string name="setup_done">Hazır</string>
+    <string name="setup_error_generic">Bir sorun oluştu: %1$s</string>
+
+    <!-- Genel -->
+    <string name="action_ok">Tamam</string>
+    <string name="action_cancel">İptal</string>
+    <string name="action_retry">Tekrar Dene</string>
+    <string name="action_close">Kapat</string>
+</resources>

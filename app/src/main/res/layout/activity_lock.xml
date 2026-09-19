@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.gxcomputer.app.desktop.NatureBackgroundView
+        android:id="@+id/natureBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#40000000" />
+
+    <!-- Üst uyarı şeridi - yalnızca ilk kurulumda görünür -->
+    <TextView
+        android:id="@+id/passwordWarningBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="#992D1B00"
+        android:padding="10dp"
+        android:gravity="center"
+        android:text="@string/lock_password_warning"
+        android:textColor="@color/gx_text_primary"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <!-- Hava durumu - sağ üst -->
+    <LinearLayout
+        android:id="@+id/weatherPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="14dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_card"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp">
+
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_weather_sun"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/weatherText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@string/weather_loading"
+            android:textColor="@color/gx_text_primary"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Saat - sol üst -->
+    <TextView
+        android:id="@+id/clockText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="14dp"
+        android:textColor="@color/gx_text_primary"
+        android:textSize="14sp"
+        tools:text="14:32" />
+
+    <!-- Orta içerik - kompakt, yatay ekrana uygun -->
+    <LinearLayout
+        android:id="@+id/centerContent"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/avatarImage"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_avatar_default"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/greetingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/gx_text_primary"
+            android:textSize="16sp"
+            tools:text="İyi Akşamlar" />
+
+        <Space android:layout_width="0dp" android:layout_height="14dp" />
+
+        <!-- Ad satırı - yalnızca ilk kurulumda -->
+        <LinearLayout
+            android:id="@+id/nameRow"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_password_field"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/nameInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/lock_name_hint"
+                android:textColorHint="@color/gx_text_tertiary"
+                android:textColor="@color/gx_text_primary"
+                android:showSoftInputOnFocus="false"
+                android:textSize="15sp"
+                android:maxLines="1" />
+        </LinearLayout>
+
+        <!-- Şifre satırı -->
+        <LinearLayout
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_password_field">
+
+            <EditText
+                android:id="@+id/passwordInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/lock_enter_password_hint"
+                android:textColorHint="@color/gx_text_tertiary"
+                android:textColor="@color/gx_text_primary"
+                android:inputType="textPassword"
+                android:showSoftInputOnFocus="false"
+                android:cursorVisible="true"
+                android:textSize="15sp"
+                android:maxLines="1"
+                android:imeOptions="actionDone" />
+
+            <ImageView
+                android:id="@+id/eyeIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/ic_eye"
+                android:contentDescription="@null" />
+        </LinearLayout>
+
+        <!-- Şifre onay satırı (yalnızca ilk kurulumda görünür) -->
+        <LinearLayout
+            android:id="@+id/confirmPasswordRow"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_password_field"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/confirmPasswordInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/lock_confirm_password_hint"
+                android:textColorHint="@color/gx_text_tertiary"
+                android:textColor="@color/gx_text_primary"
+                android:inputType="textPassword"
+                android:showSoftInputOnFocus="false"
+                android:textSize="15sp"
+                android:maxLines="1" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/errorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/gx_danger"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            tools:text="Şifre yanlış" />
+
+        <ImageView
+            android:id="@+id/unlockButton"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_button_primary"
+            android:src="@drawable/ic_terminal"
+            android:rotation="90"
+            android:contentDescription="@null" />
+    </LinearLayout>
+
+    <!-- Özel klavye paneli - varsayılan gizli, düğmeyle açılır -->
+    <LinearLayout
+        android:id="@+id/keyboardPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="#D91C1C1E"
+        android:padding="8dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/customKeyboardContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </LinearLayout>
+
+    <!-- Klavyeyi aç/kapat düğmesi - alt orta, ufak ve göze batmayan.
+         keyboardPanel'den SONRA tanımlanır ki panel açıkken üstte kalıp
+         her zaman tıklanabilir olsun (aksi halde panel bu düğmenin üstüne biner). -->
+    <TextView
+        android:id="@+id/toggleKeyboardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/bg_keyboard_key"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:text="@string/lock_toggle_keyboard"
+        android:textColor="@color/gx_text_secondary"
+        android:textSize="12sp"
+        android:elevation="4dp"
+        android:alpha="0.85" />
+
+    <!-- Önyükleme / yükleniyor katmanı -->
+    <LinearLayout
+        android:id="@+id/bootingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E60B0B0F"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="34dp"
+            android:layout_height="34dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/lock_booting_title"
+            android:textColor="@color/gx_text_primary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/lock_booting_subtitle"
+            android:textColor="@color/gx_text_secondary"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</FrameLayout>

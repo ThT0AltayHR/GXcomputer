@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1A1A1A"
+    android:padding="4dp">
+
+    <!-- Pencere üst çubuğu - Apple Terminal tarzı üç nokta -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <View android:layout_width="12dp" android:layout_height="12dp" android:background="@drawable/dot_red" />
+        <View android:layout_width="12dp" android:layout_height="12dp" android:layout_marginStart="8dp" android:background="@drawable/dot_yellow" />
+        <View android:layout_width="12dp" android:layout_height="12dp" android:layout_marginStart="8dp" android:background="@drawable/dot_green" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/terminal_title"
+            android:textColor="#88FFFFFF"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/outputScroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/outputText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:fontFamily="monospace"
+            android:textColor="#32D74B"
+            android:textSize="13sp"
+            android:textIsSelectable="true" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="10dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/promptText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textColor="#32D74B"
+            android:textSize="14sp"
+            android:text="gx&gt;" />
+
+        <EditText
+            android:id="@+id/commandInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:background="@null"
+            android:fontFamily="monospace"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#555555"
+            android:hint="@string/terminal_input_hint"
+            android:inputType="text"
+            android:imeOptions="actionGo"
+            android:singleLine="true" />
+    </LinearLayout>
+
+</LinearLayout>
