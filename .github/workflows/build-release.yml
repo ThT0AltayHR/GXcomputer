@@ -82,13 +82,19 @@ jobs:
           APKSIGNER="$ANDROID_HOME/build-tools/$BUILD_TOOLS/apksigner"
           source keystore/signing.properties
           UNSIGNED=$(find app/build/outputs/apk/release -name "*.apk" | head -1)
-          "$ZIPALIGN" -p 4 "$UNSIGNED" app-aligned.apk
+          "$ZIPALIGN" -P 16 -f 4 "$UNSIGNED" app-aligned.apk
           "$APKSIGNER" sign --ks "$storeFile" \
             --ks-type "$storeType" \
             --ks-pass pass:"$storePassword" --key-pass pass:"$keyPassword" \
             --ks-key-alias "$keyAlias" \
+            --v1-signing-enabled true \
+            --v2-signing-enabled true \
+            --v3-signing-enabled true \
             --out GXcomputer-${{ steps.version.outputs.name }}.apk app-aligned.apk
-          "$APKSIGNER" verify GXcomputer-${{ steps.version.outputs.name }}.apk
+          "$ZIPALIGN" -c -P 16 -v 4 GXcomputer-${{ steps.version.outputs.name }}.apk
+          "$APKSIGNER" verify --verbose --print-certs GXcomputer-${{ steps.version.outputs.name }}.apk
+          "$ANDROID_HOME/build-tools/$BUILD_TOOLS/aapt2" dump badging \
+            GXcomputer-${{ steps.version.outputs.name }}.apk >/dev/null
 
       - name: Derleme çıktısını yükle
         uses: actions/upload-artifact@v4
@@ -101,8 +107,8 @@ jobs:
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || format('build-{0}', github.run_number) }}
-          name: GXcomputer ${{ steps.version.outputs.name }} (kararlı)
+          tag_name: v2.0.1
+          name: GXcomputer v2.0.1 (kararlı)
           files: GXcomputer-*.apk
           make_latest: true
           body: |
