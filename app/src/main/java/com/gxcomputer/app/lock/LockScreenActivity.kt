@@ -70,7 +70,7 @@ class LockScreenActivity : AppCompatActivity() {
             onBackspace = {
                 val f = activeField()
                 val s = f.text
-                if (s.isNotEmpty()) f.text = s.subSequence(0, s.length - 1)
+                if (s.isNotEmpty()) f.text.delete(s.length - 1, s.length)
             },
             onDone = { attemptSubmit() }
         ).build()

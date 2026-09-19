@@ -12,7 +12,8 @@ import java.io.InputStreamReader
  * Wine box64 ile SARMALANMIYOR - bin/wine, ARM64 ELF olarak, /system/bin/linker64 ile doğrudan
  * natif çalışıyor. ÇALIŞTIRILAN Windows uygulamasının kendi x86/x64 kodu için ise artık gerçek,
  * doğrulanmış bileşenler entegre: FEX-Emu (The412Banner/Nightlies, PPA+unix, arm64ec/wow64
- * unixlib'leri hem lib/wine/aarch64-unix/*.so hem prefix şablonunun system32/*.dll'i olarak
+ * unixlib'leri hem lib/wine/aarch64-unix klasöründeki .so hem prefix şablonunun system32
+ * klasöründeki .dll dosyaları olarak
  * yerleştirildi - Proton'un kendi MemoryWineLoadUnixLibByName mekanizması bunu otomatik bulur)
  * ve gerçek Bionic box64 (aynı kaynaktan, /system/bin/linker64 ile - jniLibs'teki eski,
  * kırık rootfs yollu build'in yerini alıyor, ona yalnızca o da yoksa geri dönülür).
