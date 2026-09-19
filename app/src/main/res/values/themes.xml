@@ -22,6 +22,8 @@
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="p">shortEdges</item>
     </style>
 
+    <style name="GXText" />
+
     <style name="GXText.Title">
         <item name="android:textColor">@color/gx_text_primary</item>
         <item name="android:textSize">28sp</item>
